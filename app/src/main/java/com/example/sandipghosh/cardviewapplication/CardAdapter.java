@@ -17,36 +17,38 @@ import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
 
-
     List<Card> cards;
 
-    public CardAdapter(Bitmap[] imageView, String[] textView1, String[] textView2) {
-        super();
-        cards = new ArrayList<Card>();
+    public CardAdapter(String[] text1, String[] text2, Bitmap[] bitmaps) {
 
-        for(int i=0;i<textView1.length;i++) {
+        cards = new ArrayList<Card>();
+        for(int i=0;i<text1.length;i++) {
+
             Card card = new Card();
-            card.setImage(imageView[i]);
-            card.setTxt1(textView1[i]);
-            card.setTxt2(textView2[i]);
+
+            card.setText1(text1[i]);
+            card.setText2(text2[i]);
+            card.setBitmap(bitmaps[i]);
 
             cards.add(card);
         }
-
     }
+
+
     @Override
     public CardAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-         View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card,parent,false);
-        return new MyViewHolder(itemview);
+
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card,parent,false);
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(CardAdapter.MyViewHolder holder, int position) {
 
-        Card item = cards.get(position);
-        holder.bitmap.setImageBitmap(item.getImage());
-        holder.txt1.setText(item.getTxt1());
-        holder.txt2.setText(item.getTxt2());
+        Card card = cards.get(position);
+        holder.imageView1.setImageBitmap(card.getBitmap());
+        holder.txt1.setText(card.getText1());
+        holder.txt2.setText(card.getText2());
 
     }
 
@@ -55,19 +57,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         return cards.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView txt1;
         TextView txt2;
-        ImageView bitmap;
-
+        ImageView imageView1;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             txt1 = (TextView) itemView.findViewById(R.id.text1);
             txt2 = (TextView) itemView.findViewById(R.id.text2);
-            bitmap = (ImageView) itemView.findViewById(R.id.image);
+            imageView1 = (ImageView) itemView.findViewById(R.id.image);
         }
     }
 }

@@ -8,31 +8,31 @@ import android.graphics.Bitmap;
 
 public class Card {
 
-    private String txt1;
-    private String txt2;
-    private Bitmap image;
+    String text1;
+    String text2;
+    Bitmap bitmap;
 
-    public String getTxt1() {
-        return txt1;
+    public String getText1() {
+        return text1;
     }
 
-    public void setTxt1(String txt1) {
-        this.txt1 = txt1;
+    public void setText1(String text1) {
+        this.text1 = text1;
     }
 
-    public String getTxt2() {
-        return txt2;
+    public String getText2() {
+        return text2;
     }
 
-    public void setTxt2(String txt2) {
-        this.txt2 = txt2;
+    public void setText2(String text2) {
+        this.text2 = text2;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }
