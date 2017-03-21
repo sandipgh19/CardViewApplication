@@ -8,21 +8,19 @@ import android.graphics.Bitmap;
 
 public class Config {
 
-    private static String name[];
-    private static String text2[];
-    private static Bitmap bitmap[];
+    public static String[] names;
+    public static String[] urls;
+    public static Bitmap[] bitmaps;
 
-    public static final String URL ="";
-    public static final String imageURL = "";
-    public static final String text1URL = "";
-    public static final String text2URL = "";
+    public static final String GET_URL = "http://simplifiedcoding.16mb.com/CardView/getData.php";
+    public static final String TAG_IMAGE_URL = "url";
+    public static final String TAG_IMAGE_NAME = "name";
+    public static final String TAG_JSON_ARRAY="result";
 
-    public Config( int i) {
-
-        name = new String[i];
-        text2 = new String[i];
-        bitmap = new Bitmap[i];
-
+    public Config(int i){
+        names = new String[i];
+        urls = new String[i];
+        bitmaps = new Bitmap[i];
     }
 
 }

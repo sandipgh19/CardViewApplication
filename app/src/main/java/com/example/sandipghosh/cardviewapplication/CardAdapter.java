@@ -15,60 +15,55 @@ import java.util.List;
  * Created by sandipghosh on 21/03/17.
  */
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    List<Card> cards;
+    List<ListItem> items;
 
-    public CardAdapter(String[] text1, String[] text2, Bitmap[] bitmaps) {
-
-        cards = new ArrayList<Card>();
-        for(int i=0;i<text1.length;i++) {
-
-            Card card = new Card();
-
-            card.setText1(text1[i]);
-            card.setText2(text2[i]);
-            card.setBitmap(bitmaps[i]);
-
-            cards.add(card);
+    public CardAdapter(String[] names, String[] urls, Bitmap[] images){
+        super();
+        items = new ArrayList<ListItem>();
+        for(int i =0; i<names.length; i++){
+            ListItem item = new ListItem();
+            item.setName(names[i]);
+            item.setUrl(urls[i]);
+            item.setImage(images[i]);
+            items.add(item);
         }
     }
 
-
     @Override
-    public CardAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card,parent,false);
-        return new MyViewHolder(v);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_card, parent, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(CardAdapter.MyViewHolder holder, int position) {
-
-        Card card = cards.get(position);
-        holder.imageView1.setImageBitmap(card.getBitmap());
-        holder.txt1.setText(card.getText1());
-        holder.txt2.setText(card.getText2());
-
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        ListItem list =  items.get(position);
+        holder.imageView.setImageBitmap(list.getImage());
+        holder.textViewName.setText(list.getName());
+        holder.textViewUrl.setText(list.getUrl());
     }
 
     @Override
     public int getItemCount() {
-        return cards.size();
+        return items.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
+        public ImageView imageView;
+        public TextView textViewName;
+        public TextView textViewUrl;
 
-        TextView txt1;
-        TextView txt2;
-        ImageView imageView1;
-
-        public MyViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
 
-            txt1 = (TextView) itemView.findViewById(R.id.text1);
-            txt2 = (TextView) itemView.findViewById(R.id.text2);
-            imageView1 = (ImageView) itemView.findViewById(R.id.image);
+            imageView = (ImageView) itemView.findViewById(R.id.image);
+            textViewName = (TextView) itemView.findViewById(R.id.text1);
+            textViewUrl = (TextView) itemView.findViewById(R.id.text2);
+
         }
     }
 }
